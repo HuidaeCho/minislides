@@ -16,9 +16,9 @@ setPage = function (newPageNumber) {
     slides.map.call(activeSlide[querySelector + 'All'](incrementalSelector), function (el) {
         el.classList.remove(revealedCls);
     });
-    loc.hash = page2id[currentPageNumber];
+    loc.hash = activeSlide.id;
     document_body.style.background = activeSlide.dataset.bg || '';
-    document_body.dataset.slideId = activeSlide.dataset.id || page2id[currentPageNumber];
+    document_body.dataset.slideId = activeSlide.dataset.id || activeSlide.id;
 };
 
 // Init keyboard navigation
@@ -109,12 +109,10 @@ function handleTouchMove (evt) {
 }
 
 var id2page = {};
-var page2id = {};
 
 // set slide ids
 slides.map(function (slide, i) {
     id2page[slide.id] = i + 1;
-    page2id[i + 1] = slide.id;
 });
 
 // poll location hash
